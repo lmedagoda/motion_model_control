@@ -20,7 +20,7 @@ using_task_library "uwv_motion_model"
 #using_task_library "pose_estimation"
 #using_task_library "leng_docking"
 
-deployment "leng_full" do
+deployment "uwv_full" do
 
 #    task('can', "canbus::Task").
 #        periodic(0.001).
@@ -52,7 +52,7 @@ deployment "leng_full" do
     add_default_logger
 end
 
-deployment "leng_control" do
+deployment "uwv_control" do
 #    task('can', "canbus::Task").
 #        periodic(0.001).
 #        realtime.
@@ -84,7 +84,7 @@ deployment "leng_control" do
     add_default_logger
 end
 
-deployment "leng_remote" do
+deployment "uwv_remote" do
     task("cmd_producer", "auv_control::ConstantCommand").
         periodic(0.1)
 
