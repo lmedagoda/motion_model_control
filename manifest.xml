@@ -1,0 +1,19 @@
+<package>
+  <description brief="Testing the rock control chain on the uwv_dynamic_model">
+  
+  </description>
+  <author>Bilal Wehbe/bilal.wehbe@dfki.de</author>
+  <license></license>
+  <url>http://</url>
+  <logo>http://</logo>
+  <depend package="base/cmake" />
+  <!--
+   To add any dependencies use the depend tag
+  <depend package="dummy-dependency-0" />
+	...
+  <depend package="dummy-dependency-n-1" />
+  <depend package="dummy-dependency-n" />
+  -->
+  <depend package="control/orogen/uwv_motion_model" />
+  <depend package="control/orogen/auv_control" />
+</package>

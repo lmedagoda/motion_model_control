@@ -1,0 +1,99 @@
+name "motion_model_control"
+# Optionally declare the version number
+# version "0.1"
+
+# If new data types need to be defined, they have to be put in a separate C++
+# header, and this header will be loaded here
+import_types_from "motion_model_controlTypes.hpp"
+
+#using_task_library "servos_leng"
+#using_task_library "canbus"
+using_task_library "auv_control"
+using_task_library "uwv_motion_model"
+#using_task_library "raw_control_command_converter"
+#using_task_library "thruster_enitech"
+#using_task_library "dvl_seapilot"
+#using_task_library "digiquartz_pressure"
+#using_task_library "aruco"
+#using_task_library "camera_prosilica"
+#using_task_library "aruco_marker_conversion"
+#using_task_library "pose_estimation"
+#using_task_library "leng_docking"
+
+deployment "leng_full" do
+
+#    task('can', "canbus::Task").
+#        periodic(0.001).
+#        realtime.
+#        priority(85)
+
+#    task("servos", "servos_leng::DynamixelsLeng").
+#        periodic(0.1)
+
+#    task("enitech", "thruster_enitech::Task")
+
+#    task("docking_controller", "leng_docking::Docking").periodic(0.1)
+
+#    task("rbs_converter", "auv_control::RigidBodyStateConverter").
+#        periodic(0.1)
+
+    task("acceleration_controller", "auv_control::AccelerationController").
+        periodic(0.1)
+
+    task("aligned_velocity_controller", "auv_control::PIDController").
+        periodic(0.1)
+
+    task("aligned_position_controller", "auv_control::PIDController").
+        periodic(0.1)
+
+    task("world_to_aligned", "auv_control::WorldToAligned").
+        periodic(0.1)
+
+    add_default_logger
+end
+
+deployment "leng_control" do
+#    task('can', "canbus::Task").
+#        periodic(0.001).
+#        realtime.
+#        priority(85)
+
+#    task("servos", "servos_leng::DynamixelsLeng").
+#        periodic(0.1)
+
+#    task("enitech", "thruster_enitech::Task")
+
+#    task("rbs_converter", "auv_control::RigidBodyStateConverter").
+#        periodic(0.1)
+
+    task("acceleration_controller", "auv_control::AccelerationController").
+        periodic(0.1)
+
+    task("aligned_velocity_controller", "auv_control::PIDController").
+        periodic(0.1)
+
+    task("aligned_position_controller", "auv_control::PIDController").
+        periodic(0.1)
+
+    task("world_to_aligned", "auv_control::WorldToAligned").
+        periodic(0.1)
+
+    task("motion_model", "uwv_motion_model::Task").
+        periodic(0.1)
+
+    add_default_logger
+end
+
+deployment "leng_remote" do
+    task("cmd_producer", "auv_control::ConstantCommand").
+        periodic(0.1)
+
+#    task("cmd_producer_sinus", "auv_control::ConstantSinusCommand").
+#        periodic(0.1)
+
+    task("cmd_producer_speed", "auv_control::ConstantCommand").
+        periodic(0.1)
+
+#    task("control_converter", "raw_control_command_converter::Movement")
+end
+
