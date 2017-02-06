@@ -1,9 +1,5 @@
 name "motion_model_control"
-# Optionally declare the version number
-# version "0.1"
 
-# If new data types need to be defined, they have to be put in a separate C++
-# header, and this header will be loaded here
 import_types_from "motion_model_controlTypes.hpp"
 
 #using_task_library "servos_leng"
@@ -92,6 +88,9 @@ deployment "uwv_remote" do
 #        periodic(0.1)
 
     task("cmd_producer_speed", "auv_control::ConstantCommand").
+        periodic(0.1)
+
+    task("ConstantCommand", "auv_control::ConstantCommand").
         periodic(0.1)
 
 #    task("control_converter", "raw_control_command_converter::Movement")
