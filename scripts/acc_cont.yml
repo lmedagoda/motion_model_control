@@ -1,0 +1,62 @@
+--- name:default
+# Lists which command parameter are being controlled on a per-joint basis.
+# 
+# If left empty, uses RAW by default
+control_modes: []
+# This property defines which parts of the command input is expected to be
+# set once we merged all the declared input ports.
+expected_inputs:
+  linear:
+  - false
+  - false
+  - false
+  angular:
+  - false
+  - false
+  - false
+# If true, the component will send a zero command before getting into an
+# exception state. Otherwise, it will not do anything
+keep_position_on_exception: true
+# Limits of the thrusters
+# 
+# Leave empty if you don't want to limit anything (is that really a good
+# idea ?)
+limits:
+  names: []
+  elements: []
+# Matrix with size of 6 * n. n means the count of thrusters that are used.
+# The rows 0 to 2 of the matrix are the linear axis. The lines 3 to 5 of the
+# matrix are the angular axis.
+matrix:
+  rows: 0
+  cols: 0
+  data: []
+# Names of the thrusters
+# 
+# Leave empty to use no names
+names: []
+# If true write NaN on all axis, in keep position case
+nan_on_keep_position: false
+# This property defines the safty behavior ath the merging of the input-ports.
+# If the property is on true (default) the merged command need to be like in
+# the expected_inputs property defined. Else the expected_inputs are ignored
+# while the merged comand are unic.
+safe_mode: true
+# TRUE: allows the SVD solution for calculating the thrusters commands
+#       similarly to pseudo-inverse solution.
+# FALSE: the thruster commands will be calcultated by transposing the
+#        thruster matrix and multiplying it by the input.
+svd_calculation: true
+# Weights that indicate which thrusters should be prioritized in
+# cases where multiple solutions are possible. The thrusters with lower
+# weights will be prioritized. The property size should be equal to the number of
+# thrusters and it must have only positive numbers. If there's no preference
+# between the thrusters, just assign the same weight to all of them.
+thrusters_weights:
+  data: []
+# This property defines the timeout for the cascade input port in seconds. 0
+# means that the timeout would be ignored.
+timeout_cascade: 1.0
+# This property defines the timeout for the cmd_in input port in seconds. 0
+# means that the timeout would be ignored.
+timeout_in: 1.0
