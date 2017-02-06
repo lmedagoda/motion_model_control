@@ -428,3 +428,18 @@
 0.067 [ Info   ][Thread] Creating Thread for scheduler=ORO_SCHED_OTHER, priority=1, CPU affinity=0, with name='Activity'
 0.067 [ Info   ][Activity] Thread created with scheduler type 'ORO_SCHED_OTHER', priority 0, cpu affinity 15 and period 0 (PID= 8487 ).
 0.067 [ Info   ][OrbRunner] Entering orb->run().
+1149.871 [ Info   ][ShutdownOrb] Cleaning up TaskContextServers...
+1149.872 [ Info   ][~TaskContextServer()] Successfully removed CTaskContext 'enitech' from CORBA Naming Service.
+1149.872 [ Info   ][~TaskContextServer()] Successfully removed CTaskContext 'leng_control_Logger' from CORBA Naming Service.
+1149.872 [ Info   ][~TaskContextServer()] Successfully removed CTaskContext 'can' from CORBA Naming Service.
+1149.872 [ Info   ][~TaskContextServer()] Successfully removed CTaskContext 'aligned_velocity_controller' from CORBA Naming Service.
+1149.873 [ Info   ][~TaskContextServer()] Successfully removed CTaskContext 'aligned_position_controller' from CORBA Naming Service.
+1149.873 [ Info   ][~TaskContextServer()] Successfully removed CTaskContext 'world_to_aligned' from CORBA Naming Service.
+1149.873 [ Info   ][~TaskContextServer()] Successfully removed CTaskContext 'acceleration_controller' from CORBA Naming Service.
+1149.873 [ Info   ][~TaskContextServer()] Successfully removed CTaskContext 'servos' from CORBA Naming Service.
+1149.874 [ Info   ][ShutdownOrb] Orb Shutdown...waiting...
+1149.875 [ Info   ][ShutdownOrb] done.
+1149.875 [ Info   ][OrbRunner] Breaking out of orb->run().
+1149.875 [ Info   ][OrbRunner] Safely stopped.
+1149.876 [ Info   ][DestroyOrb] Orb destroyed.
+1150.174 [ Info   ][Logger] Orocos Logging Deactivated.

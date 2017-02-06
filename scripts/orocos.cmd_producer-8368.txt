@@ -139,3 +139,14 @@
 0.023 [ Info   ][Thread] Creating Thread for scheduler=ORO_SCHED_OTHER, priority=1, CPU affinity=0, with name='Activity'
 0.024 [ Info   ][Activity] Thread created with scheduler type 'ORO_SCHED_OTHER', priority 0, cpu affinity 15 and period 0 (PID= 8457 ).
 0.024 [ Info   ][OrbRunner] Entering orb->run().
+1150.824 [ Info   ][ShutdownOrb] Cleaning up TaskContextServers...
+1150.827 [ ERROR  ][~TaskContextServer()] caught CORBA exception while reading a remote channel: OBJECT_NOT_EXIST OBJECT_NOT_EXIST_NoMatch
+1150.827 [ Info   ][~TaskContextServer()] Successfully removed CTaskContext 'control_cmd_producer2' from CORBA Naming Service.
+1150.827 [ Info   ][~TaskContextServer()] Successfully removed CTaskContext 'control_cmd_producer' from CORBA Naming Service.
+1150.827 [ Info   ][~TaskContextServer()] Successfully removed CTaskContext 'control_cmd_producer3' from CORBA Naming Service.
+1150.828 [ Info   ][ShutdownOrb] Orb Shutdown...waiting...
+1150.828 [ Info   ][ShutdownOrb] done.
+1150.828 [ Info   ][DestroyOrb] Breaking out of orb->run().
+1150.828 [ Info   ][OrbRunner] Safely stopped.
+1150.829 [ Info   ][/home/dfki.uni-bremen.de/bwehbe/eurex-dev/install/bin/cmd_producer::main()] Orb destroyed.
+1150.925 [ Info   ][Logger] Orocos Logging Deactivated.

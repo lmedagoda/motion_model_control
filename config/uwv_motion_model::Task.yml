@@ -1,0 +1,177 @@
+--- name:default
+# Set the names of the dive cells and give them ids. If your vehicle doesn't have diving cells then leave empty.
+a_cells_ids:
+  names: [dive_front, dive_rear]
+  elements: [5,6]
+  
+# Set the names of the thrusters and give them ids. If your vehicle doesn't have thrusters then leave empty.
+a_thruster_ids:
+  names: ["rear", "strafe_rear", "strafe_front"]
+  elements: [0,1,2]
+  
+# Set the names of the vectoring servos and give them ids. If your vehicle doesn't have vectoring servos then leave empty.
+a_vectoring_ids:
+  names: [vector_right, vector_left]
+  elements: [3,4]  
+  
+# Defines if the control signal is PWM, RPM or EFFORT.
+control_mode: :RPM
+
+# Parameters of the motion model.
+model_parameters:
+  ctrl_order: 7
+  number_of_Thrusters: 3
+  number_of_cells: 2
+  number_of_vectoring: 2
+  samplingtime: 0.1
+  sim_per_cycle: 10
+  massMatrix:
+    data: [76.2, 0.0,  0.0,  0.0,  0.76, 0.0, 
+           0.0,  76.2, 0.0, -0.76, 0.0,  0.0,
+           0.0,  0.0,  76.2, 0.0,  0.0,  0.0,     
+           0.0, -0.76, 0.0,  0.58, 0.0,  0.0,     
+           0.76, 0.0,  0.0,  0.0,  104,  0.0,     
+           0.0,  0.0,  0.0,  0.0,  0.0,  104]
+  massMatrixNeg:
+    data: [76.2, 0.0,  0.0,  0.0,  0.76, 0.0, 
+           0.0,  76.2, 0.0, -0.76, 0.0,  0.0,
+           0.0,  0.0,  76.2, 0.0,  0.0,  0.0,     
+           0.0, -0.76, 0.0,  0.58, 0.0,  0.0,     
+           0.76, 0.0,  0.0,  0.0,  104,  0.0,     
+           0.0,  0.0,  0.0,  0.0,  0.0,  104]
+  coriolisMatrix:
+    data: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0,   0.0, 0.0, 0.0, 0.0, 0.0, 0.0,   0.0, 0.0, 0.0, 0.0, 0.0, 0.0,   0.0, 0.0, 0.0, 0.0, 0.0, 0.0,   0.0, 0.0, 0.0, 0.0, 0.0, 0.0,   0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+  coriolisMatrixNeg:
+    data: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0,   0.0, 0.0, 0.0, 0.0, 0.0, 0.0,   0.0, 0.0, 0.0, 0.0, 0.0, 0.0,   0.0, 0.0, 0.0, 0.0, 0.0, 0.0,   0.0, 0.0, 0.0, 0.0, 0.0, 0.0,   0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+  AddedMassMatrixPos:
+    data: [70.5, 0.0,    0.0,    0.0,  0.0,    0.0,
+           0.0,  478.72, 0.0,    0.0,  0.0,   -1.93,     
+           0.0,  0.0,    478.72, 0.0,  1.93,   0.0,     
+           0.0,  0.0,    0.0,    0.07, 0.0,    0.0,     
+           0.0,  0.0,    1.93,   0.0,  368.15, 0.0,     
+           0.0, -1.93,   0.0,    0.0,  0.0,    368.15]
+  AddedMassMatrixNeg:
+    data: [90.5, 0.0,    0.0,    0.0,  0.0,    0.0,
+           0.0,  478.72, 0.0,    0.0,  0.0,   -1.93,     
+           0.0,  0.0,    478.72, 0.0,  1.93,   0.0,     
+           0.0,  0.0,    0.0,    0.07, 0.0,    0.0,     
+           0.0,  0.0,    1.93,   0.0,  368.15, 0.0,     
+           0.0, -1.93,   0.0,    0.0,  0.0,    368.15]
+  linDampMatrix:
+    data: [5.51, 0.0,   0.0,   0.0,  0.0,  0.0,    
+           0.0,  21.48, 0.0,   0.0,  0.0,  0.0,     
+           0.0,  0.0,   21.48, 0.0,  0.0,  0.0,     
+           0.0,  0.0,   0.0,   10.0, 0.0,  0.0,     
+           0.0,  0.0,   0.0,   0.0,  32.0, 0.0,     
+           0.0,  0.0,   0.0,   0.0,  0.0,  32.0]
+  linDampMatrixNeg:
+    data: [5.51, 0.0,   0.0,   0.0,  0.0,  0.0,    
+           0.0,  21.48, 0.0,   0.0,  0.0,  0.0,     
+           0.0,  0.0,   21.48, 0.0,  0.0,  0.0,     
+           0.0,  0.0,   0.0,   10.0, 0.0,  0.0,     
+           0.0,  0.0,   0.0,   0.0,  32.0, 0.0,     
+           0.0,  0.0,   0.0,   0.0,  0.0,  32.0]
+  quadDampMatrix:
+    data: [7.81, 0.0,   0.0,   0.0,  0.0,  0.0,
+           0.0,  779.4, 0.0,   0.0,  0.0, -11.4,     
+           0.0,  0.0,   779.4, 0.0,  11.4, 0.0,     
+           0.0,  0.0,   0.0,   15.0, 0.0,  0.0,     
+           0.0,  0.0,  -10.0,  0.0,  2020, 0.0,     
+           0.0,  0.0,   0.0,   0.0,  0.0,  2020]
+  quadDampMatrixNeg:
+    data: [7.81, 0.0,   0.0,   0.0,  0.0,  0.0,
+           0.0,  779.4, 0.0,   0.0,  0.0, -11.4,     
+           0.0,  0.0,   779.4, 0.0,  11.4, 0.0,     
+           0.0,  0.0,   0.0,   15.0, 0.0,  0.0,     
+           0.0,  0.0,  -10.0,  0.0,  2020, 0.0,     
+           0.0,  0.0,   0.0,   0.0,  0.0,  2020]
+  LiftCoefficients:
+    data: [730, 730, 68.77, -68.77]
+  CorrectionCoefficients:
+    data: [21.36, 22.93]
+  thruster_control_matrix:
+    rows: 6
+    cols: 3
+    data:
+      - 1.0    # Rear
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0    # strafe_rear
+      - 1.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - -0.8575 
+      - 0.0    # strafe_front
+      - -1.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - -0.8575   
+  distance_body2centerofbuoyancy:
+    data:
+    - 0.0
+    - 0.0
+    - 0.0
+  distance_body2centerofgravity:
+    data: [0, 0, 0.05]
+  cellinput_to_force:
+    data:
+    - -3.64
+    - -3.64
+  cells_positions:
+    rows: 3
+    cols: 2
+    data: [-1.255, 0.0, 0.0, 
+            1.255, 0.0, 0.0]
+  uwv_mass: 76.2
+  uwv_volume: 0.007781591
+  uwv_float: true
+  waterDensity: 998.2
+  gravity: 9.81
+  thrusterVoltage: []
+  thruster_coefficients_pwm:
+  - positive: 0.0
+    negative: 0.0
+  linear_thruster_coefficients_pwm:
+  - positive: 0.0
+    negative: 0.0
+  square_thruster_coefficients_pwm:
+  - positive: 0.0
+    negative: 0.0
+  thruster_coefficient_rpm:
+  - positive:  0.00330283
+    negative:  0.00330283
+  - positive:  0.00262543
+    negative:  0.00262543
+  - positive:  0.00262543
+    negative:  0.00262543
+  initial_condition:
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+# Name of the source frame.
+source_frame: 'Earth'
+# Name of the target frame.
+target_frame: 'Body'
+# Velocity uncertainty values. This values are integrated in order to obtain the pose uncertainty
+velocity_uncertainty:
+  data:
+  - 6.3659873764e-314
+  - 4.243991583e-314
+  - 0.1
+  - 6.91282568822806e-310
+  - 0.0
+  - 0.0

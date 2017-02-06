@@ -673,3 +673,27 @@
 0.159 [ Info   ][Thread] Creating Thread for scheduler=ORO_SCHED_OTHER, priority=1, CPU affinity=0, with name='Activity'
 0.159 [ Info   ][Activity] Thread created with scheduler type 'ORO_SCHED_OTHER', priority 0, cpu affinity 15 and period 0 (PID= 8553 ).
 0.159 [ Info   ][OrbRunner] Entering orb->run().
+1148.536 [ Info   ][ShutdownOrb] Cleaning up TaskContextServers...
+1148.536 [ Info   ][~TaskContextServer()] Successfully removed CTaskContext 'perception_joint_merging' from CORBA Naming Service.
+1148.536 [ Info   ][~TaskContextServer()] Successfully removed CTaskContext 'perception_apriltags' from CORBA Naming Service.
+1148.536 [ Info   ][~TaskContextServer()] Successfully removed CTaskContext 'perception_depth_correction' from CORBA Naming Service.
+1148.537 [ Info   ][~TaskContextServer()] Successfully removed CTaskContext 'reset_heading_marker' from CORBA Naming Service.
+1148.537 [ Info   ][~TaskContextServer()] Successfully removed CTaskContext 'sensor_camera_front' from CORBA Naming Service.
+1148.537 [ Info   ][~TaskContextServer()] Successfully removed CTaskContext 'perception_pose_estimator' from CORBA Naming Service.
+1148.537 [ Info   ][~TaskContextServer()] Successfully removed CTaskContext 'perception_model_only' from CORBA Naming Service.
+1148.537 [ Info   ][~TaskContextServer()] Successfully removed CTaskContext 'perception_usbl_watchdog' from CORBA Naming Service.
+1148.537 [ Info   ][~TaskContextServer()] Successfully removed CTaskContext 'perception_velocity_provider' from CORBA Naming Service.
+1148.537 [ Info   ][~TaskContextServer()] Successfully removed CTaskContext 'perception_visual_marker_conversion' from CORBA Naming Service.
+1148.537 [ Info   ][~TaskContextServer()] Successfully removed CTaskContext 'perception_orientation_estimator' from CORBA Naming Service.
+1148.537 [ Info   ][~TaskContextServer()] Successfully removed CTaskContext 'perception_orientation_correction' from CORBA Naming Service.
+1148.537 [ Info   ][~TaskContextServer()] Successfully removed CTaskContext 'perception_orientation_in_map' from CORBA Naming Service.
+1148.538 [ Info   ][~TaskContextServer()] Successfully removed CTaskContext 'perception_aruco' from CORBA Naming Service.
+1148.538 [ Info   ][~TaskContextServer()] Successfully removed CTaskContext 'sensor_imu_kvh_1750' from CORBA Naming Service.
+1148.538 [ Info   ][~TaskContextServer()] Successfully removed CTaskContext 'sensor_sonar_micron' from CORBA Naming Service.
+1148.538 [ Info   ][~TaskContextServer()] Successfully removed CTaskContext 'sensors_leng_Logger' from CORBA Naming Service.
+1148.539 [ Info   ][ShutdownOrb] Orb Shutdown...waiting...
+1148.539 [ Info   ][ShutdownOrb] done.
+1148.539 [ Info   ][CDataFlowInterface_i::createConnection] Breaking out of orb->run().
+1148.539 [ Info   ][OrbRunner] Safely stopped.
+1148.540 [ Info   ][DestroyOrb] Orb destroyed.
+1148.574 [ Info   ][Logger] Orocos Logging Deactivated.

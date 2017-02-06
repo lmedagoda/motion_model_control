@@ -1,0 +1,7 @@
+--- name:default
+# no documentation available for this property
+gliding_config:
+  final_depth: 7.0
+  glide_angle: -0.785
+  pitch_stabilization_depth: 6.0
+  depth_threshold: 0.25

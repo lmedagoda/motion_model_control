@@ -1,0 +1,279 @@
+--- name:default
+# TRUE: allows the SVD solution for calculating the thrusters commands
+#       similarly to pseudo-inverse solution.
+# FALSE: the thruster commands will be calcultated by transposing the
+#        thruster matrix and multiplying it by the input.
+svd_calculation: false
+names: ["rear", "strafe_rear", "strafe_front", "vector_right", "vector_left", "dive_front", "dive_rear"]
+# Lists which command parameter are being controlled on a per-joint basis.
+# 
+# If left empty, uses RAW by default
+control_modes: 
+  - :SPEED
+  - :SPEED
+  - :SPEED
+  - :POSITION
+  - :POSITION
+  - :POSITION
+  - :POSITION
+# This property defines which parts of the command input is expected to be
+# set once we merged all the declared input ports.
+expected_inputs:
+  linear:
+  - true
+  - true
+  - true
+  angular:
+  - true
+  - true
+  - true
+# If true, the component will send a zero command before getting into an
+# exception state. Otherwise, it will not do anything
+keep_position_on_exception: true
+# Limits of the thrusters
+# 
+# Leave empty if you don't want to limit anything (is that really a good
+# idea ?)
+limits:
+  names: ["rear", "strafe_rear","strafe_front", "vector_right", "vector_left", "dive_front", "dive_rear"]
+  elements:
+  - min:
+      position: .nan
+      speed: -942.45
+      effort: .nan
+      raw: .nan
+    max:
+      position: .nan
+      speed: 942.45
+      effort: .nan
+      raw: .nan
+  - min:
+      position: .nan
+      speed: -942.45
+      effort: .nan
+      raw: .nan
+    max:
+      position: .nan
+      speed: 942.45
+      effort: .nan
+      raw: .nan
+  - min:
+      position: .nan
+      speed: -942.45
+      effort: .nan
+      raw: .nan
+    max:
+      position: .nan
+      speed: 942.45
+      effort: .nan
+      raw: .nan
+  - min:
+      position: -1.0
+      speed: .nan
+      effort: .nan
+      raw: .nan
+    max:
+      position: 1.0
+      speed: .nan
+      effort: .nan
+      raw: .nan
+  - min:
+      position: -1.0
+      speed: .nan
+      effort: .nan
+      raw: .nan
+    max:
+      position: 1.0
+      speed: .nan
+      effort: .nan
+      raw: .nan
+  - min:
+      position: -1.0
+      speed: .nan
+      effort: .nan
+      raw: .nan
+    max:
+      position: 1.0
+      speed: .nan
+      effort: .nan
+      raw: .nan
+  - min:
+      position: -1.0
+      speed: .nan
+      effort: .nan
+      raw: .nan
+    max:
+      position: 1.0
+      speed: .nan
+      effort: .nan
+      raw: .nan
+# This property defines the timeout for the cascade input port in seconds. 0
+# means that the timeout would be ignored.
+timeout_cascade: 1.0
+# This property defines the timeout for the cmd_in input port in seconds. 0
+# means that the timeout would be ignored.
+timeout_in: 1.0
+# Matrix with size of 6 * n. n means the count of thrusters that are used.
+# The rows 0 to 2 of the matrix are the linear axis. The lines 3 to 5 of the
+# matrix are the angular axis.
+matrix:
+  rows: 6
+  cols: 7
+  data:
+  -  942.45 #rear
+  -  0.0
+  -  0.0
+  -  0.0
+  -  0.0
+  -  0.0 
+  -  0.0 #strafe_rear
+  -  942.45
+  -  0.0
+  -  0.0
+  -  0.0 
+  -  -942.45
+  -  0.0 #strafe_front
+  -  -942.45
+  -  0.0
+  -  0.0
+  -  0.0 
+  -  -942.45
+  -  0.0 #servo_right
+  -  0.0
+  -  0.0
+  -  0.0
+  -  -1.0   # -1.0 for pitch vector control, 0.0 for differential bouyancy control
+  -  1.0 
+  -  0.0 #servo_left
+  -  0.0
+  -  0.0
+  -  0.0
+  -  -1.0   # -1.0 for pitch vector control, 0.0 for differential bouyancy control
+  -  -1.0
+  -  0.0 #servo_dive_front
+  -  0.0
+  -  0.77
+  -  1.0
+  -  -1.0   # 0.0 for pitch vector control, 1.0 for differential bouyancy control
+  -  0.0
+  -  0.0 #servo_dive_rear
+  -  0.0
+  -  1.0
+  -  1.0
+  -  1.0   # 0.0 for pitch vector control, -1.0 for differential bouyancy control
+  -  0.0
+
+--- name:no_vector
+# Matrix with size of 6 * n. n means the count of thrusters that are used.
+# The rows 0 to 2 of the matrix are the linear axis. The lines 3 to 5 of the
+# matrix are the angular axis.
+matrix:
+  rows: 6
+  cols: 7
+  data:
+  -  942.45 #rear
+  -  0.0
+  -  0.0
+  -  0.0
+  -  0.0
+  -  0.0 
+  -  0.0 #strafe_rear
+  -  942.45
+  -  0.0
+  -  0.0
+  -  0.0 
+  -  -942.45
+  -  0.0 #strafe_front
+  -  -942.45
+  -  0.0
+  -  0.0
+  -  0.0 
+  -  -942.45
+  -  0.0 #servo_right
+  -  0.0
+  -  0.0
+  -  0.0
+  -  -0.0   # -1.0 for pitch vector control, 0.0 for differential bouyancy control
+  -  0.0 
+  -  0.0 #servo_left
+  -  0.0
+  -  0.0
+  -  0.0
+  -  -0.0   # -1.0 for pitch vector control, 0.0 for differential bouyancy control
+  -  0.0
+  -  0.0 #servo_dive_front
+  -  0.0
+  -  0.77
+  -  1.0
+  -  -1.0   # 0.0 for pitch vector control, 1.0 for differential bouyancy control
+  -  0.0
+  -  0.0 #servo_dive_rear
+  -  0.0
+  -  1.0
+  -  1.0
+  -  1.0   # 0.0 for pitch vector control, -1.0 for differential bouyancy control
+  -  0.0
+
+--- name:no_thrusters
+# Matrix with size of 6 * n. n means the count of thrusters that are used.
+# The rows 0 to 2 of the matrix are the linear axis. The lines 3 to 5 of the
+# matrix are the angular axis.
+matrix:
+  rows: 6
+  cols: 7
+  data:
+  -  0.0 #rear
+  -  0.0
+  -  0.0
+  -  0.0
+  -  0.0
+  -  0.0 
+  -  0.0 #strafe_rear
+  -  0.0
+  -  0.0
+  -  0.0
+  -  0.0 
+  -  0.0
+  -  0.0 #strafe_front
+  -  0.0
+  -  0.0
+  -  0.0
+  -  0.0 
+  -  0.0
+  -  0.0 #servo_right
+  -  0.0
+  -  0.0
+  -  0.0
+  -  -0.0   # -1.0 for pitch vector control, 0.0 for differential bouyancy control
+  -  1.0 
+  -  0.0 #servo_left
+  -  0.0
+  -  0.0
+  -  0.0
+  -  -0.0   # -1.0 for pitch vector control, 0.0 for differential bouyancy control
+  -  -1.0
+  -  0.0 #servo_dive_front
+  -  0.0
+  -  0.77
+  -  1.0
+  -  -1.0   # 0.0 for pitch vector control, 1.0 for differential bouyancy control
+  -  0.0
+  -  0.0 #servo_dive_rear
+  -  0.0
+  -  1.0
+  -  1.0
+  -  1.0   # 0.0 for pitch vector control, -1.0 for differential bouyancy control
+  -  0.0
+
+
+--- name:acceleration
+expected_inputs:
+  linear:
+  - true
+  - true
+  - false
+  angular:
+  - true
+  - true
+  - true
+
