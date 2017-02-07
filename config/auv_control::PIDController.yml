@@ -23,7 +23,7 @@ timeout_in: 1.0
 # The command frame (true:world or false:aligned)
 world_frame: false
 
-variance_threshold: 999999999.0
+variance_threshold: .inf
 
 --- name:nothing
 # This property defines which parts of the command input is expected to be
