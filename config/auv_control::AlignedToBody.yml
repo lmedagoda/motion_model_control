@@ -26,8 +26,7 @@ timeout_cascade: 1.0
 timeout_in: 1.0
 # This property defines the timeout for the cmd_in input port in seconds. 0
 # means that the timeout would be ignored.
-timeout_orientation:
-  microseconds: 1000000
+timeout_orientation: 1.0
 --- name:only_z
 # This property defines which parts of the command input is expected to be
 # set once we merged all the declared input ports.
