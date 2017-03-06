@@ -23,6 +23,9 @@ timeout_in: 1.0
 # The command frame (true:world or false:aligned)
 world_frame: false
 
+timeout_pose:
+  microseconds: 1000000
+
 variance_threshold: .inf
 
 --- name:nothing
