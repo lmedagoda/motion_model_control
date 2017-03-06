@@ -18,7 +18,9 @@ include Orocos
 
 Orocos.initialize
 
-Orocos.run 'control_chain', 'uwv_motion_model::Task' => 'motion_model' do
+control_velocity_and_position = false
+
+Orocos.run 'control_chain', 'uwv_motion_model::Task' => 'motion_model', :output => false do
     Orocos.conf.load_dir('../config')
     
     tasks = Array.new
@@ -36,15 +38,21 @@ Orocos.run 'control_chain', 'uwv_motion_model::Task' => 'motion_model' do
 
 ##########################WORLD_TO_ALIGNED
     STDERR.print "setting up world_to_aligned ..."
-    Orocos.conf.apply(world_to_aligned,['default'], true)
-    #Orocos.conf.apply(world_to_aligned,['default', 'no_xy'], true)
+    if control_velocity_and_position
+    	Orocos.conf.apply(world_to_aligned,['default', 'no_xy'], true)
+    else
+    	Orocos.conf.apply(world_to_aligned,['default'], true)
+    end
     tasks.push world_to_aligned
     STDERR.puts "done"
 
 ##########################ALIGNED_POSITION_CONTROLLER
     STDERR.print "setting up aligned_position_controller ..."
-    Orocos.conf.apply(aligned_position_controller,['default', 'position_parallel'], true)
-    #Orocos.conf.apply(aligned_position_controller,['default', 'position_parallel', 'no_xy'], true)
+    if control_velocity_and_position
+    	Orocos.conf.apply(aligned_position_controller,['default', 'position_parallel', 'no_xy'], true)
+    else
+ 	Orocos.conf.apply(aligned_position_controller,['default', 'position_parallel'], true)
+    end
     tasks.push aligned_position_controller
     STDERR.puts "done"
 
@@ -57,8 +65,13 @@ Orocos.run 'control_chain', 'uwv_motion_model::Task' => 'motion_model' do
 #########################CONSTANT_COMMAND for depth
     STDERR.print "setting up cmd_producer for depth..."
     cmd = cmd_producer_pose.cmd
-    cmd.linear[0] = 0
-    cmd.linear[1] = 0
+    if control_velocity_and_position
+        cmd.linear[0] = NaN
+        cmd.linear[1] = NaN
+    else
+        cmd.linear[0] = 0
+        cmd.linear[1] = 0
+    end
     cmd.linear[2] = 0
     cmd.angular[0] = 0
     cmd.angular[1] = 0
@@ -104,27 +117,29 @@ Orocos.run 'control_chain', 'uwv_motion_model::Task' => 'motion_model' do
 
 
     cmd_producer_pose.cmd_out.connect_to world_to_aligned.cmd_in
-    #cmd_producer_velocity.cmd_out.connect_to aligned_velocity_controller.cmd_in
+    if control_velocity_and_position
+        cmd_producer_velocity.cmd_out.connect_to aligned_velocity_controller.cmd_in
+    end
         
     world_to_aligned.cmd_out.connect_to aligned_position_controller.cmd_cascade
     aligned_position_controller.cmd_out.connect_to aligned_velocity_controller.cmd_cascade
     aligned_velocity_controller.cmd_out.connect_to acceleration_controller.cmd_cascade
-	acceleration_controller.cmd_out.connect_to motion_model.cmd_in
+    acceleration_controller.cmd_out.connect_to motion_model.cmd_in
 
 	
 	
-	tasks.each do |task|
-	    task.configure
-	    task.start
-	end
+    tasks.each do |task|
+	task.configure
+	task.start
+    end
 
   
     Vizkit.display motion_model.cmd_out, :widget => Vizkit.default_loader.RigidBodyStateVisualization
     
     task_inspector = Vizkit.default_loader.TaskInspector
     tasks.each do |task|
-	    Vizkit.display task, :widget => task_inspector
-	end
+	Vizkit.display task, :widget => task_inspector
+    end
     
     Vizkit.exec
 end
